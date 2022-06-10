@@ -4,14 +4,15 @@ class BoardsController < ApplicationController
   end
 
   def create
-    Board.create(board_params)
+    @board = Article.create(board_params)
   end
 
   def index
+    @boards = Article.all
   end
-  
+
   private
   def board_params
-    params.require(:board).permit(:name, :title, :body)
+    params.require(:article).permit(:name, :title, :body)
   end
 end
