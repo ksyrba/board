@@ -4,8 +4,14 @@ class BoardsController < ApplicationController
   end
 
   def create
+    Board.create(board_params)
   end
 
   def index
+  end
+  
+  private
+  def board_params
+    params.require(:board).permit(:name, :title, :body)
   end
 end
