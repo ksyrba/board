@@ -4,11 +4,15 @@ class BoardsController < ApplicationController
   end
 
   def create
-    @board = Article.create(board_params)
+    Article.create(board_params)
   end
 
   def index
     @boards = Article.all
+  end
+
+  def show
+    @board = Article.find(params[:id])
   end
 
   private
