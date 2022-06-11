@@ -4,8 +4,8 @@ class BoardsController < ApplicationController
   end
 
   def create
-    Article.create(board_params)
-    redirect_to boards_path
+    board = Article.create(board_params)
+    redirect_to board_path(board)
   end
 
   def index
@@ -24,6 +24,12 @@ class BoardsController < ApplicationController
     board = Article.find(params[:id])
     board.update(board_params)
     redirect_to board_path(board)
+  end
+  
+  def destroy
+    board = Article.find(params[:id])
+    board.delete
+    redirect_to boards_path
   end
 
   private
