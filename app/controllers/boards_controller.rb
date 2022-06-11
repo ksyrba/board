@@ -11,7 +11,7 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @boards = Article.all
+    @boards = Article.page(params[:page])
   end
 
   def show
