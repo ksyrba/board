@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :set_target_board, only:[:show, :edit, :update, :destroy]
+  
   def new
     @board = Article.new
   end
@@ -13,27 +15,27 @@ class BoardsController < ApplicationController
   end
 
   def show
-    @board = Article.find(params[:id])
   end
 
   def edit
-    @board = Article.find(params[:id])
   end
 
   def update
-    board = Article.find(params[:id])
-    board.update(board_params)
-    redirect_to board_path(board)
+    @board.update(board_params)
+    redirect_to board_path(@board)
   end
   
   def destroy
-    board = Article.find(params[:id])
-    board.delete
+    @board.destroy
     redirect_to boards_path
   end
 
   private
   def board_params
     params.require(:article).permit(:name, :title, :body)
+  end
+  
+  def set_target_board
+    @board = Article.find(params[:id])
   end
 end
