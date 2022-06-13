@@ -7,6 +7,7 @@ class BoardsController < ApplicationController
 
   def create
     board = Article.create(board_params)
+    flash[:notice] = "「#{board.title}」の掲示板を作成しました"
     redirect_to board_path(board)
   end
 
@@ -27,7 +28,7 @@ class BoardsController < ApplicationController
   
   def destroy
     @board.destroy
-    redirect_to boards_path
+    redirect_to boards_path, flash: { notice: "「#{@board.title}」の掲示板が削除されました" }
   end
 
   private
