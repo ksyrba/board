@@ -4,6 +4,15 @@
     <%= link_to '一覧', boards_path, class: 'btn btn-outline-dark' %>
   </div>
 </div>
+<% if flash[:error_messages]  %>
+  <div class="alert alert-danger">
+    <ul>
+      <% flash[:error_messages].each do |msg|  %>
+        <li><%= msg %></li>
+      <% end %>
+    <ul>
+  </div>
+<% end %>
 <%= form_with model: @board, url: boards_path, method: :post do |f| %>
   <div class="form-group">
     <%= f.label :name, '名前' %>
