@@ -7,15 +7,15 @@
 #  name       :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  board_id   :integer          not null
+#  article_id :integer          not null
 #
 # Indexes
 #
-#  index_comments_on_board_id  (board_id)
+#  index_comments_on_article_id  (article_id)
 #
 # Foreign Keys
 #
-#  board_id  (board_id => boards.id)
+#  article_id  (article_id => articles.id)
 #
 class Comment < ApplicationRecord
   belongs_to :board
