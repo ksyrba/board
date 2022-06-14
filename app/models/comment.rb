@@ -18,7 +18,7 @@
 #  article_id  (article_id => articles.id)
 #
 class Comment < ApplicationRecord
-  belongs_to :board
+  belongs_to :article
   
   validates :name, presence: true, length: { maximum: 10 }
   validates :comment, presence: true, length: { maximum: 1000 }

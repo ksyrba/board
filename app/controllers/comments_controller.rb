@@ -3,7 +3,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new(comment_params)
     if @comment.save
       flash[:notice] = 'コメントを投稿しました'
-      redirect_to comment.board
+      redirect_to board_path(@comment.article)
     else
       flash[:comment] = @comment
       flash[:error_messages] = @comment.errors.full_messages
@@ -12,8 +12,9 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @board.delete
-    redirect_to boards_path, flash: { notice: "「#{@board.title}」の掲示板が削除されました" }
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to board_path(@comment.article), flash: { notice: "コメントが削除されました" }
   end
 
   private
