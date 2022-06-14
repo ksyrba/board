@@ -12,6 +12,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
+    @board.delete
+    redirect_to boards_path, flash: { notice: "「#{@board.title}」の掲示板が削除されました" }
   end
 
   private
