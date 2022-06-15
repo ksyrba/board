@@ -17,7 +17,8 @@ class BoardsController < ApplicationController
   end
 
   def index
-    @boards = Article.page(params[:page])
+    @boards = params[:tag_id].present? ? Tag.find(params[:tag_id]).articles : Article.all
+    @boards = @boards.page(params[:page])
   end
 
   def show
